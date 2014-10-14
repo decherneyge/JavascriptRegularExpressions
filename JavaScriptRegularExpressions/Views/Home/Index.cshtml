@@ -1,22 +1,40 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+<div class="jumbotron"><h2>JavaScript Regular Expression Tester</h2></div>
 
-<div class="jumbotron">
+<div class="row">
     
-        <div class="col-md-9"><input type="text" class="form-control input-lg" /></div>
-        <h3 class="pull-left">/</h3>
-        <div class="col-md-2"><input type="text" class="form-control input-lg" /></div>
+        <div class="col-md-9">
+        <label>Regular Expression</label>
+                <input type="text" class="form-control input-lg" />
+        </div>
+        <h3 class="pull-left" style="margin-top:35px">/</h3>
+        <div class="col-md-2">
+        <label>Options</label>
+                <input type="text" class="form-control input-lg" />
+        </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-      
+    <div class="col-md-6">
+        <label>Test String</label>
+      <textarea class="form-control"></textarea>
     </div>
-    <div class="col-md-4">
-       
-    </div>
-    <div class="col-md-4">
-       
+    <div class="col-md-offset-1 col-md-5">
+        <label>Results</label>
+       <div class="well well-lg"></div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="well well-lg">
+            <label>Cheat Sheet</label>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+}
