@@ -7,23 +7,25 @@
     
         <div class="col-md-9">
         <label>Regular Expression</label>
-                <input type="text" class="form-control input-lg" />
+                <input id="txtRegex" type="text" class="form-control input-lg" />
         </div>
         <h3 class="pull-left" style="margin-top:35px">/</h3>
         <div class="col-md-2">
         <label>Options</label>
-                <input type="text" class="form-control input-lg" />
+                <input id="txtOptions" type="text" class="form-control input-lg" />
         </div>
 </div>
 
 <div class="row">
     <div class="col-md-6">
         <label>Test String</label>
-      <textarea class="form-control"></textarea>
+      <textarea id="txtTestString" class="form-control"></textarea>
     </div>
     <div class="col-md-offset-1 col-md-5">
         <label>Results</label>
-       <div class="well well-lg"></div>
+       <div id="Results" class="well well-lg">
+           &nbsp;
+       </div>
     </div>
 </div>
 
@@ -36,5 +38,69 @@
 </div>
 
 @section scripts{
+    <script type="text/javascript">
 
+        $(function () {
+
+            var txtRegex = $('#txtRegex');
+            var txtOptions = $('#txtOptions');
+            var txtTestString = $('#txtTestString');
+            var divResults = $('#Results');
+
+            function noResults() {
+                divResults.removeClass('error').empty().html('No Results Found.');
+            }
+
+            function clearResults() {
+                divResults.removeClass('error').empty().html('&nbsp;');
+            }
+
+            function invalidRegex() {
+                divResults.addClass('error').empty().html('Invalid Regular Expression');
+            }
+
+            function matchFound() {
+                divResults.removeClass('error').empty().html('Match Found');
+            }
+
+            function runTest() {
+
+                var regexString = txtRegex.val();
+                var optionsString = txtOptions.val();
+                var testString = txtTestString.val();
+
+                //if there is no regex we can clear all results
+                if (!regexString) {
+                    clearResults();
+                    return;
+                }
+
+                //if there is no test string we can assume no results
+                if (!testString) {
+                    noResults();
+                    return;
+                }
+
+                //build regex
+                try {
+                    var regex = new RegExp(regexString, optionsString);
+
+                    if (regex.test(testString)) {
+                        matchFound();
+                    } else {
+                        noResults();
+                    }
+                }
+                catch (err) {
+                    invalidRegex();
+                }
+
+            }
+
+            txtRegex.on('keyup', runTest);
+            txtOptions.on('keyup', runTest);
+            txtTestString.on('keyup', runTest);
+
+        });
+    </script>
 }
