@@ -42,25 +42,34 @@
 
         $(function () {
 
-            var txtRegex = $('#txtRegex');
-            var txtOptions = $('#txtOptions');
-            var txtTestString = $('#txtTestString');
-            var divResults = $('#Results');
+            var errorClasses = "text-danger bg-danger",
+                txtRegex = $('#txtRegex'),
+                txtOptions = $('#txtOptions'),
+                txtTestString = $('#txtTestString'),
+                divResults = $('#Results');
 
             function noResults() {
-                divResults.removeClass('error').empty().html('No Results Found.');
+                divResults.removeClass(errorClasses).empty().html('No Results Found.');
             }
 
             function clearResults() {
-                divResults.removeClass('error').empty().html('&nbsp;');
+                divResults.removeClass(errorClasses).empty().html('&nbsp;');
             }
 
             function invalidRegex() {
-                divResults.addClass('error').empty().html('Invalid Regular Expression');
+                divResults.addClass(errorClasses).empty().html('Invalid Regular Expression');
             }
 
-            function matchFound() {
-                divResults.removeClass('error').empty().html('Match Found');
+            function matchFound(results) {
+
+                var ul = $("<ul class='match-results' />"),
+                    li;
+                for (var i = 0; i < results.length; i++) {
+                    li = $('<li />').html(results[i]);
+                    ul.append(li);
+                }
+
+                divResults.removeClass(errorClasses).empty().html(ul);
             }
 
             function runTest() {
@@ -86,7 +95,7 @@
                     var regex = new RegExp(regexString, optionsString);
 
                     if (regex.test(testString)) {
-                        matchFound();
+                        matchFound(testString.match(regex));
                     } else {
                         noResults();
                     }
