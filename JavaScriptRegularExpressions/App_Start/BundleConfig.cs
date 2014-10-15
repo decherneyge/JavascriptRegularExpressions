@@ -19,7 +19,7 @@ namespace JavaScriptRegularExpressions
             var nullOrderer = new NullOrderer();
 
             var cssBundle = new CustomStyleBundle("~/bundles/css");
-            cssBundle.Include("~/Content/Site.less", "~/Content/bootstrap/bootstrap.less");
+            cssBundle.Include( "~/Content/bootstrap/bootstrap.less", "~/Content/font-awesome.min.css","~/Content/Site.less");
             cssBundle.Transforms.Add(cssTransformer);
             cssBundle.Orderer = nullOrderer;
             bundles.Add(cssBundle);
