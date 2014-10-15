@@ -5,11 +5,11 @@
 <div id="primary"class="bg-primary">
     <div class="row">
 
-        <div class="col-md-9">
+        <div class="col-md-10">
             <label>Regular Expression</label>
             <input id="txtRegex" type="text" class="form-control input-lg" />
         </div>
-        <h3 class="pull-left" style="margin-top:35px">/</h3>
+        <h3 id="optionslash" class="pull-left" style="margin-top:35px">/</h3>
         <div class="col-md-2">
             <label>Options</label>
             <input id="txtOptions" type="text" class="form-control input-lg" />
@@ -21,7 +21,7 @@
             <label>Test String</label>
             <textarea id="txtTestString" class="form-control"></textarea>
         </div>
-        <div class="col-md-offset-1 col-md-5">
+        <div class="col-md-6">
             <label>Results</label>
             <div id="Results" class="well well-lg">
                 &nbsp;
@@ -33,6 +33,7 @@
     <div class="col-md-12">
         <div class="well well-lg">
             <label>Cheat Sheet</label>
+            @Html.Partial("_CheatSheet")
         </div>
     </div>
 </div>
